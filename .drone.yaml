@@ -1,6 +1,12 @@
 kind: pipeline
 name: default
 steps:
+  - name: tags
+    image: golang
+    commands:
+      - echo -n "latest,${DRONE_TAG}" > .tags
+      - cat .tags
+
   - name: publish
     image: plugins/docker
     settings:
@@ -9,9 +15,6 @@ steps:
       password:
         from_secret: docker_password
       repo: thomaswiener/docker-kubeval
-      auto_tag: true
-      tags:
-        - latest
 
 trigger:
   event:
