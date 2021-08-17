@@ -1,0 +1,31 @@
+#!/bin/bash
+
+SERVICE_TYPE=$1
+ADDITIONAL_SCHEMA_LOCATIONS=$2
+
+SYNTAX='
+Syntax:
+./kubeval-lqt {SERVICE_TYPE}
+---
+Description
+SERVICE_TYPE = k8s|ecs - required
+ADDITIONAL_SCHEMA_LOCATIONS = local or remote file location (e.g. file://kubeval-schema) - optional
+'
+
+if [ -z "$SERVICE_TYPE" ]; then
+  echo "SERVICE_TYPE may not be empty, use k8s or ecs"
+  exit 1
+fi
+
+ADDITIONAL_SCHEMA=""
+if [ ! -z "$ADDITIONAL_SCHEMA_LOCATIONS" ]; then
+  ADDITIONAL_SCHEMA="--additional-schema-locations $ADDITIONAL_SCHEMA_LOCATIONS"
+fi
+
+FILES=$(find "$SERVICE_TYPE" -print | grep yaml)
+
+for FILE in $FILES
+do
+  echo "Validating $FILE"
+  kubeval "$FILE" $ADDITIONAL_SCHEMA
+done
