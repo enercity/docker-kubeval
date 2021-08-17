@@ -2,10 +2,9 @@ kind: pipeline
 name: default
 steps:
   - name: tags
-    image: golang
+    image: alpine:3.14
     commands:
       - echo -n "latest,${DRONE_TAG}" > .tags
-      - cat .tags
 
   - name: publish
     image: plugins/docker
