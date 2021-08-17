@@ -10,8 +10,7 @@ steps:
         from_secret: docker_password
       repo: thomaswiener/docker-kubeval
       auto_tag: true
-    when:
-      event:
-        - tag
-      branch:
-        - main
+
+trigger:
+  event:
+    - tag
