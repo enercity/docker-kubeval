@@ -16,4 +16,4 @@ steps:
       event:
         - push
       branch:
-        - master
+        - main
