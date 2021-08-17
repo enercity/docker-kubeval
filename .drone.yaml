@@ -13,7 +13,5 @@ steps:
         - latest
         - 1.0.0
     when:
-      event:
-        - push
       branch:
         - main
