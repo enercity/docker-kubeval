@@ -17,9 +17,9 @@ if [ -z "$SERVICE_TYPE" ]; then
   exit 1
 fi
 
-ADDITIONAL_SCHEMA=""
+ADDITIONAL_SCHEMA="--schema-location https://raw.githubusercontent.com/enercity/kubernetes-json-schema/master/"
 if [ ! -z "$ADDITIONAL_SCHEMA_LOCATIONS" ]; then
-  ADDITIONAL_SCHEMA="--additional-schema-locations $ADDITIONAL_SCHEMA_LOCATIONS"
+  ADDITIONAL_SCHEMA=" --additional-schema-locations $ADDITIONAL_SCHEMA_LOCATIONS"
 fi
 
 FILES=$(find "$SERVICE_TYPE" -print | grep yaml)
