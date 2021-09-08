@@ -17,7 +17,7 @@ if [ -z "$SERVICE_TYPE" ]; then
   exit 1
 fi
 
-ADDITIONAL_SCHEMA="--schema-location https://raw.githubusercontent.com/enercity/kubernetes-json-schema/master"
+ADDITIONAL_SCHEMA="--additional-schema-locations https://raw.githubusercontent.com/enercity/kubernetes-json-schema/master"
 if [ ! -z "$ADDITIONAL_SCHEMA_LOCATIONS" ]; then
   ADDITIONAL_SCHEMA=" --additional-schema-locations $ADDITIONAL_SCHEMA_LOCATIONS"
 fi
